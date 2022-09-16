@@ -69,6 +69,7 @@ export default class Content extends Component {
     url: "",
     name: "",
     desc: "",
+    price: "",
   };
   renderGlassList = () => {
     return listGlass.map((item, index) => {
@@ -86,11 +87,21 @@ export default class Content extends Component {
     });
   };
   renderInfo = (item) => {
-    this.setState({
-      url: item.url,
-      name: item.name,
-      desc: item.desc,
-    });
+    if (this.state.url === "") {
+      this.setState({
+        url: item.url,
+        name: item.name,
+        desc: item.desc,
+        price: item.price + "$",
+      });
+    } else {
+      this.setState({
+        url: "",
+        name: "",
+        desc: "",
+        price: "",
+      });
+    }
   };
   render() {
     return (
@@ -107,6 +118,7 @@ export default class Content extends Component {
             </div>
             <div className="info">
               <h2 className="name">{this.state.name}</h2>
+              <h2 className="price">{this.state.price}</h2>
               <p className="des">{this.state.desc}</p>
             </div>
             ;
